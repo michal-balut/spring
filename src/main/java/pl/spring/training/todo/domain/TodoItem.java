@@ -1,8 +1,10 @@
 package pl.spring.training.todo.domain;
 
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Value;
 
-@Getter
+@Builder
+@Value
 public class TodoItem {
 
 	private String id;
