@@ -33,8 +33,8 @@ public class TodoRestAdapter {
 
 	@PutMapping("{id}")
 	public ResponseEntity<TodoItemDto> updateById(@PathVariable String id, @RequestBody UpdatedTodoDto updatedTodoDto) {
-		var todoItem = todoItemMapper.toDomain(id, updatedTodoDto);
-		var updatedTodoItem = todoService.update(todoItem);
+		var todoItem = todoItemMapper.toDomain(updatedTodoDto);
+		var updatedTodoItem = todoService.update(id, todoItem);
 		var updatedTodoItemDto = todoItemMapper.toDto(updatedTodoItem);
 		return ResponseEntity.ok(updatedTodoItemDto);
 	}
@@ -50,7 +50,7 @@ public class TodoRestAdapter {
 	@GetMapping
 	public ResponseEntity<List<TodoItemDto>> list() {
 		var todoList = todoService.findAll();
-		var todoDtoList = todoItemMapper.toList(todoList);
+		var todoDtoList = todoItemMapper.toDto(todoList);
 		return ResponseEntity.ok(todoDtoList);
 	}
 }

@@ -10,7 +10,7 @@ public interface TodoService {
 
 	TodoItem create(TodoItem todoItem);
 
-	TodoItem update(TodoItem todoItem);
+	TodoItem update(String id, TodoItem todoItem);
 
 	List<TodoItem> findAll();
 }
