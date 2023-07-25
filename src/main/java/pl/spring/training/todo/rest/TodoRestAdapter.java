@@ -1,5 +1,7 @@
 package pl.spring.training.todo.rest;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,10 +33,10 @@ public class TodoRestAdapter {
 
 	@PutMapping("{id}")
 	public ResponseEntity<TodoItemDto> updateById(@PathVariable String id, @RequestBody UpdatedTodoDto updatedTodoDto) {
-
-		var todoItem = todoService.getById(id);
-		var todoItemDto = todoItemMapper.toDto(todoItem);
-		return ResponseEntity.ok(todoItemDto);
+		var todoItem = todoItemMapper.toDomain(id, updatedTodoDto);
+		var updatedTodoItem = todoService.update(todoItem);
+		var updatedTodoItemDto = todoItemMapper.toDto(updatedTodoItem);
+		return ResponseEntity.ok(updatedTodoItemDto);
 	}
 
 	@PostMapping
@@ -43,5 +45,12 @@ public class TodoRestAdapter {
 		var createdTodoItem = todoService.create(todoItem);
 		var todoItemDto = todoItemMapper.toDto(createdTodoItem);
 		return ResponseEntity.status(HttpStatus.CREATED).body(todoItemDto);
+	}
+
+	@GetMapping
+	public ResponseEntity<List<TodoItemDto>> list() {
+		var todoList = todoService.findAll();
+		var todoDtoList = todoItemMapper.toList(todoList);
+		return ResponseEntity.ok(todoDtoList);
 	}
 }

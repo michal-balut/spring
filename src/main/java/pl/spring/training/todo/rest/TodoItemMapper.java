@@ -1,7 +1,8 @@
 package pl.spring.training.todo.rest;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import pl.spring.training.todo.domain.TodoItem;
 
@@ -12,5 +13,9 @@ public interface TodoItemMapper {
 
 	TodoItem toDomain(NewTodoDto newTodoDto);
 
+	TodoItem toDomain(String id, UpdatedTodoDto updatedTodoDto);
+
 	TodoItemDto toDto(TodoItem todoItem);
+
+	List<TodoItemDto> toList(List<TodoItem> todoList);
 }
