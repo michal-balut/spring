@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
-@Entity(name = "Entity")
+@Entity(name = "Todo")
 @EqualsAndHashCode(of = "id")
 @Getter
 @Setter
