@@ -3,5 +3,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Buy a new coat"
+  "name": "Buy a new shirt"
 }
+###
+GET http://localhost:8080/todos
+Accept: application/json
+Content-Type: application/json

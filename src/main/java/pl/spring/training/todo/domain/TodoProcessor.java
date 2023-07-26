@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import pl.spring.training.todo.ports.TodoService;
 
-import java.util.Collections;
 import java.util.List;
 
 @Log
@@ -17,6 +16,7 @@ public class TodoProcessor implements TodoService {
     private final TodoRepository repository;
 
     @Override
+    @Transactional
     public TodoItem getById(String id) {
         return repository.getById(id);
     }
@@ -34,13 +34,15 @@ public class TodoProcessor implements TodoService {
     }
 
     @Override
+    @Transactional
     public TodoItem update(final String id, final TodoItem todoItem) {
         return null;
     }
 
     @Override
+    @Transactional
     public List<TodoItem> findAll() {
-        return Collections.emptyList();
+        return repository.findAll();
     }
 
 }
