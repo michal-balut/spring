@@ -1,11 +1,11 @@
 package pl.spring.training.todo.domain;
 
+import java.util.List;
+
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import pl.spring.training.todo.ports.TodoService;
-
-import java.util.List;
 
 @Log
 @RequiredArgsConstructor
@@ -27,7 +27,7 @@ public class TodoProcessor implements TodoService {
         var newTodoItem = TodoItem.builder()
             .id(idGenerator.getNext())
             .name(todoItem.getName())
-            .isDone(false)
+            .done(false)
             .build();
         repository.save(newTodoItem);
         return newTodoItem;
@@ -36,7 +36,13 @@ public class TodoProcessor implements TodoService {
     @Override
     @Transactional
     public TodoItem update(final String id, final TodoItem todoItem) {
-        return null;
+		var updatedTodoItem = TodoItem.builder()
+				.id(id)
+				.name(todoItem.getName())
+				.done(todoItem.isDone())
+				.build();
+		repository.update(updatedTodoItem, id);
+		return updatedTodoItem;
     }
 
     @Override

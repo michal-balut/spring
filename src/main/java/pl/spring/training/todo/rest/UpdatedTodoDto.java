@@ -7,5 +7,5 @@ public class UpdatedTodoDto {
 
 	private String name;
 
-	private boolean isDone;
+	private boolean done;
 }

@@ -9,5 +9,5 @@ public class TodoItemDto {
 
 	private String name;
 
-	private boolean isDone;
+	private boolean done;
 }
