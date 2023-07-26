@@ -12,6 +12,6 @@ public class TodoEntity {
 
     @Id
     private String id;
-    private Boolean isDone;
+    private boolean done;
     private String name;
 }

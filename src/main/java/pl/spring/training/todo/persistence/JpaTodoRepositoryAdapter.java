@@ -37,7 +37,7 @@ public class JpaTodoRepositoryAdapter implements TodoRepository {
     @Override
     public TodoItem update(final TodoItem todoItem, final String id) {
         TodoEntity todoEntity = todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
-        todoEntity.setIsDone(todoItem.isDone());
+        todoEntity.setDone(todoItem.isDone());
         todoEntity.setName(todoItem.getName());
         return mapper.todoEntityToTodoItem(todoRepository.save(todoEntity));
     }
