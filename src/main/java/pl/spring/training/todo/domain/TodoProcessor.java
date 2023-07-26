@@ -27,7 +27,7 @@ public class TodoProcessor implements TodoService {
         var newTodoItem = TodoItem.builder()
             .id(idGenerator.getNext())
             .name(todoItem.getName())
-            .isDone(false)
+            .done(false)
             .build();
         repository.save(newTodoItem);
         return newTodoItem;

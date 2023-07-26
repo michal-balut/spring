@@ -11,6 +11,6 @@ public class TodoItem {
 
 	String name;
 
-	boolean isDone;
+	boolean done;
 
 }
