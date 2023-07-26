@@ -1,8 +1,8 @@
 package pl.spring.training.todo.ports;
 
-import java.util.List;
-
 import pl.spring.training.todo.domain.TodoItem;
+
+import java.util.List;
 
 public interface TodoService {
 
