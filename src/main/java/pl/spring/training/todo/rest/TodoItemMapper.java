@@ -10,14 +10,14 @@ import pl.spring.training.todo.domain.TodoItem;
 @Mapper(componentModel = "spring")
 public interface TodoItemMapper {
 
-	TodoItem toDomain(TodoItemDto todoItemDto);
+	TodoItem todoItemDtoToTodoItem(TodoItemDto todoItemDto);
 
-	TodoItem toDomain(NewTodoDto newTodoDto);
+	TodoItem todoItemDtoToTodoItem(NewTodoDto newTodoDto);
 
-	TodoItem toDomain(UpdatedTodoDto updatedTodoDto);
+	TodoItem todoItemDtoToTodoItem(UpdatedTodoDto updatedTodoDto);
 
-	TodoItemDto toDto(TodoItem todoItem);
+	TodoItemDto todoItemToTodoItemDto(TodoItem todoItem);
 
 	@IterableMapping(elementTargetType = TodoItemDto.class)
-	List<TodoItemDto> toDto(List<TodoItem> todoList);
+	List<TodoItemDto> todoItemToTodoItemDto(List<TodoItem> todoList);
 }

@@ -5,8 +5,8 @@ import pl.spring.training.todo.domain.TodoItem;
 
 @Mapper(componentModel = "spring")
 public interface JpaTodoPersistenceMapper {
-    TodoEntity toEntity(TodoItem todoItem);
+    TodoEntity todoItemToTodoEntity(TodoItem todoItem);
 
-    TodoItem toDomain(TodoEntity paymentEntity);
+    TodoItem todoEntityToTodoItem(TodoEntity todoEntity);
 
 }

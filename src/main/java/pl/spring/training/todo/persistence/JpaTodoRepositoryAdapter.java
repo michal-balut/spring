@@ -20,18 +20,18 @@ public class JpaTodoRepositoryAdapter implements TodoRepository {
 
     @Override
     public TodoItem save(final TodoItem todoItem) {
-        var todoEntity = mapper.toEntity(todoItem);
-        return mapper.toDomain(todoRepository.save(todoEntity));
+        var todoEntity = mapper.todoItemToTodoEntity(todoItem);
+        return mapper.todoEntityToTodoItem(todoRepository.save(todoEntity));
     }
 
     @Override
     public TodoItem getById(final String id) {
-        return mapper.toDomain(todoRepository.getReferenceById(id));
+        return mapper.todoEntityToTodoItem(todoRepository.getReferenceById(id));
     }
 
     @Override
     public List<TodoItem> findAll() {
-        return todoRepository.findAll().stream().map(mapper::toDomain).collect(Collectors.toList());
+        return todoRepository.findAll().stream().map(mapper::todoEntityToTodoItem).collect(Collectors.toList());
     }
 
     @Override
@@ -39,7 +39,7 @@ public class JpaTodoRepositoryAdapter implements TodoRepository {
         TodoEntity todoEntity = todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
         todoEntity.setIsDone(todoItem.isDone());
         todoEntity.setName(todoItem.getName());
-        return mapper.toDomain(todoRepository.save(todoEntity));
+        return mapper.todoEntityToTodoItem(todoRepository.save(todoEntity));
     }
 
     @Override

@@ -7,10 +7,10 @@ import lombok.Value;
 @Value
 public class TodoItem {
 
-	private String id;
+	String id;
 
-	private String name;
+	String name;
 
-	private boolean isDone;
+	boolean isDone;
 
 }

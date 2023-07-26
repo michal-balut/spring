@@ -27,30 +27,30 @@ public class TodoRestAdapter {
 	@GetMapping("{id}")
 	public ResponseEntity<TodoItemDto> getById(@PathVariable String id) {
 		var todoItem = todoService.getById(id);
-		var todoItemDto = todoItemMapper.toDto(todoItem);
+		var todoItemDto = todoItemMapper.todoItemToTodoItemDto(todoItem);
 		return ResponseEntity.ok(todoItemDto);
 	}
 
 	@PutMapping("{id}")
 	public ResponseEntity<TodoItemDto> updateById(@PathVariable String id, @RequestBody UpdatedTodoDto updatedTodoDto) {
-		var todoItem = todoItemMapper.toDomain(updatedTodoDto);
+		var todoItem = todoItemMapper.todoItemDtoToTodoItem(updatedTodoDto);
 		var updatedTodoItem = todoService.update(id, todoItem);
-		var updatedTodoItemDto = todoItemMapper.toDto(updatedTodoItem);
+		var updatedTodoItemDto = todoItemMapper.todoItemToTodoItemDto(updatedTodoItem);
 		return ResponseEntity.ok(updatedTodoItemDto);
 	}
 
 	@PostMapping
 	public ResponseEntity<TodoItemDto> create(@RequestBody NewTodoDto newTodoDto) {
-		var todoItem = todoItemMapper.toDomain(newTodoDto);
+		var todoItem = todoItemMapper.todoItemDtoToTodoItem(newTodoDto);
 		var createdTodoItem = todoService.create(todoItem);
-		var todoItemDto = todoItemMapper.toDto(createdTodoItem);
+		var todoItemDto = todoItemMapper.todoItemToTodoItemDto(createdTodoItem);
 		return ResponseEntity.status(HttpStatus.CREATED).body(todoItemDto);
 	}
 
 	@GetMapping
 	public ResponseEntity<List<TodoItemDto>> list() {
 		var todoList = todoService.findAll();
-		var todoDtoList = todoItemMapper.toDto(todoList);
+		var todoDtoList = todoItemMapper.todoItemToTodoItemDto(todoList);
 		return ResponseEntity.ok(todoDtoList);
 	}
 }
